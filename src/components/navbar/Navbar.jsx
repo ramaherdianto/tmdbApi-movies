@@ -7,13 +7,15 @@ import SearchMobile from './SearchMobile';
 const Navbar = () => {
     return (
         <>
-            <nav className='bg-navbar flex flex-col md:flex-row justify-center p-4 gap-8'>
-                <section className='max-w-7xl w-full flex justify-between items-center'>
-                    <Logo />
-                    <Search />
-                    <NumResults />
+            <nav className='flex flex-col max-w-7xl md:flex-row justify-center mx-auto'>
+                <section className='bg-navbar p-4 w-full flex flex-col md:flex-row justify-between items-center rounded-xl gap-8 md:gap-0'>
+                    <section className='w-full flex justify-between items-center'>
+                        <Logo />
+                        <Search />
+                        <NumResults />
+                    </section>
+                    <SearchMobile />
                 </section>
-                <SearchMobile />
             </nav>
         </>
     );
