@@ -5,7 +5,7 @@ const MovieItem = ({ movie }) => {
 
     return (
         <>
-            <article className='flex items-center gap-8 p-8 border-b border-slate-600'>
+            <article className='flex items-center gap-8 p-4 md:p-8 border-b border-slate-600'>
                 <img
                     className='w-[100px] h-[150px] sm:w-[150px] sm:h-[200px]'
                     src={`${posterUrl}${movie.poster_path}`}
@@ -17,7 +17,9 @@ const MovieItem = ({ movie }) => {
                     </h3>
                     <div className='flex items-center gap-2'>
                         <span>📅</span>
-                        <span className='text-slate-400 text-xs sm:text-sm'>Year Released</span>
+                        <span className='text-slate-400 text-xs sm:text-sm'>
+                            {movie.release_date}
+                        </span>
                     </div>
                 </div>
             </article>

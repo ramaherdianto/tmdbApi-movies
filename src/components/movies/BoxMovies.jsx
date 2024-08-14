@@ -10,14 +10,16 @@ const BoxMovies = ({ children, boxTitle }) => {
 
     return (
         <section
-            className={`bg-navbar w-full md:w-1/2 max-w-1/2 relative rounded-xl transition-all duration-500 ease-in-out shadow-[0px_20px_33px_-8px_rgba(0,0,0,0.49)] ${
-                isOpen ? 'py-4 overflow-y-scroll h-[42rem]' : 'h-[3.3rem] flex items-center p-4'
+            className={`bg-navbar w-full md:w-1/2 max-w-1/2 relative rounded-xl transition-all duration-500 ease-in-out shadow-[0_0_20px_2px_rgba(0,0,0,0.23)] ${
+                isOpen
+                    ? 'overflow-y-scroll h-[42rem]'
+                    : 'h-[3.3rem] py-8 px-4 md:px-8 flex items-center'
             }`}
         >
             <Button
                 className={`w-[2em] h-[2em] z-20 ${
-                    isOpen ? 'bg-[#24323F]' : 'bg-sidebar'
-                } text-lg font-bold bg-navbar rounded-full text-primary absolute right-2 top-2`}
+                    isOpen ? 'bg-body absolute right-2 top-[24.5px]' : 'bg-sidebar'
+                } text-lg font-bold bg-navbar rounded-full text-primary absolute right-2 top-[12.5px]`}
                 onClick={handleOpen}
             >
                 {isOpen ? '-' : '+'}

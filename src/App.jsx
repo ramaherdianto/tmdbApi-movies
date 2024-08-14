@@ -25,10 +25,10 @@ function App() {
 
     return (
         <>
-            <header className='sticky top-4 z-10'>
+            <header className='sticky top-4 z-50'>
                 <Navbar />
             </header>
-            <main className='max-w-7xl w-full mx-auto mt-20 flex flex-col md:flex-row gap-10'>
+            <main className='max-w-7xl w-full mx-auto mt-32 md:mt-20 flex flex-col md:flex-row gap-40'>
                 <MovieContent movies={movies} />
             </main>
         </>

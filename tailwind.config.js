@@ -9,6 +9,7 @@ export default {
             colors: {
                 navbar: '#1a2634',
                 sidebar: '#3b4956',
+                body: '#24323F',
                 primary: '#57c3bc',
             },
         },
