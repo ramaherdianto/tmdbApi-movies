@@ -10,7 +10,7 @@ const BoxMovies = ({ children, boxTitle }) => {
 
     return (
         <section
-            className={`bg-navbar w-full md:w-1/2 max-w-1/2 relative rounded-xl transition-all duration-500 ease-in-out ${
+            className={`bg-navbar w-full md:w-1/2 max-w-1/2 relative rounded-xl transition-all duration-500 ease-in-out shadow-[0px_20px_33px_-8px_rgba(0,0,0,0.49)] ${
                 isOpen ? 'py-4 overflow-y-scroll h-[42rem]' : 'h-[3.3rem] flex items-center p-4'
             }`}
         >
