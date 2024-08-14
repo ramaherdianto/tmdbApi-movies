@@ -11,18 +11,20 @@ const BoxMovies = ({ children, boxTitle }) => {
     return (
         <section
             className={`bg-navbar w-full md:w-1/2 max-w-1/2 relative rounded-xl transition-all duration-500 ease-in-out ${
-                isOpen ? '' : 'h-[3.3rem] flex items-center p-4'
+                isOpen ? 'py-4 overflow-y-scroll h-[42rem]' : 'h-[3.3rem] flex items-center p-4'
             }`}
         >
             <Button
-                className={`w-[2em] h-[2em] ${
+                className={`w-[2em] h-[2em] z-20 ${
                     isOpen ? 'bg-[#24323F]' : 'bg-sidebar'
                 } text-lg font-bold bg-navbar rounded-full text-primary absolute right-2 top-2`}
                 onClick={handleOpen}
             >
                 {isOpen ? '-' : '+'}
             </Button>
-            {!isOpen && <h3 className='text-xl text-slate-200 font-semibold'>{boxTitle}</h3>}
+            {!isOpen && (
+                <h3 className='text-xl text-slate-200 font-semibold uppercase'>{boxTitle}</h3>
+            )}
             {isOpen && <>{children}</>}
         </section>
     );
