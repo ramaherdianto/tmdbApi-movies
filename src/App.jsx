@@ -5,22 +5,31 @@ import { useEffect, useState } from 'react';
 
 function App() {
     const [movies, setMovies] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState('');
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
     const apiKey = import.meta.env.VITE_API_KEY;
 
     const handleGetMovies = async () => {
         try {
+            setIsLoading(true);
+            setIsError('');
             const response = await Axios.get(`${baseUrl}/movie/popular?api_key=${apiKey}&page=1`);
+
+            if (response.data.success === 'false') throw new Error(response.data.status_message);
+
             setMovies(response.data.results);
+            setIsError('');
         } catch (error) {
-            console.log(error.message);
+            setIsError(error.response.data.status_message);
+        } finally {
+            setIsLoading(false);
         }
     };
 
     useEffect(() => {
         handleGetMovies();
-        console.log(movies);
     }, []);
 
     return (
@@ -29,7 +38,7 @@ function App() {
                 <Navbar />
             </header>
             <main className='max-w-7xl w-full mx-auto mt-32 md:mt-20 flex flex-col md:flex-row gap-40'>
-                <MovieContent movies={movies} />
+                <MovieContent movies={movies} isLoading={isLoading} isError={isError} />
             </main>
         </>
     );

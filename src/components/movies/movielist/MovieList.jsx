@@ -1,8 +1,10 @@
 import React from 'react';
 import BoxMovies from '../BoxMovies';
 import MovieItem from './MovieItem';
+import Loader from '../../loader/Loader';
+import Error from '../../error/ErrorMessage';
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies, isLoading, isError }) => {
     return (
         <>
             <BoxMovies boxTitle={'List of Movies'}>
@@ -11,10 +13,18 @@ const MovieList = ({ movies }) => {
                         List of Movies
                     </h3>
                 </section>
-                <section className='mt-5 py-2'>
-                    {movies.map((movie) => {
-                        return <MovieItem key={movie.id} movie={movie} />;
-                    })}
+                <section
+                    className={`mt-5 py-2 ${
+                        isLoading || isError ? 'h-[30rem] flex items-center justify-center p-8' : ''
+                    }`}
+                >
+                    {isLoading && <Loader />}
+                    {isError && <Error errorMessage={isError} />}
+                    {!isLoading &&
+                        !isError &&
+                        movies.map((movie) => {
+                            return <MovieItem key={movie.id} movie={movie} />;
+                        })}
                 </section>
             </BoxMovies>
         </>
