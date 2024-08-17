@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../button/Button';
 
-const BoxMovies = ({ children, boxTitle }) => {
-    const [isOpen, setIsOpen] = useState(true);
-
-    const handleOpen = () => {
-        setIsOpen((isOpen) => !isOpen);
-    };
-
+const BoxMovies = ({ children, boxTitle, isOpen, handleOpen }) => {
     return (
         <section
             className={`bg-navbar w-full md:w-1/2 max-w-1/2 relative rounded-xl transition-all duration-500 ease-in-out shadow-[0_0_20px_2px_rgba(0,0,0,0.23)] ${
@@ -18,7 +12,7 @@ const BoxMovies = ({ children, boxTitle }) => {
         >
             <Button
                 className={`w-[2em] h-[2em] z-20 ${
-                    isOpen ? 'bg-[#24323f] absolute right-2 top-[24.5px]' : 'bg-sidebar'
+                    isOpen ? 'bg-[#24323f] absolute right-2 top-[24.5px] hidden' : 'bg-sidebar'
                 } text-lg font-bold bg-navbar rounded-full text-primary absolute right-2 top-[12.5px]`}
                 onClick={handleOpen}
             >
