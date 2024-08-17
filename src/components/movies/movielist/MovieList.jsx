@@ -4,7 +4,7 @@ import MovieItem from './MovieItem';
 import Loader from '../../loader/Loader';
 import Error from '../../error/ErrorMessage';
 
-const MovieList = ({ movies, isLoading, isError }) => {
+const MovieList = ({ movies, isLoading, isError, onSelectedMovieId }) => {
     return (
         <>
             <BoxMovies boxTitle={'List of Movies'}>
@@ -23,7 +23,13 @@ const MovieList = ({ movies, isLoading, isError }) => {
                     {!isLoading &&
                         !isError &&
                         movies.map((movie) => {
-                            return <MovieItem key={movie.id} movie={movie} />;
+                            return (
+                                <MovieItem
+                                    key={movie.id}
+                                    movie={movie}
+                                    onSelectedMovieId={onSelectedMovieId}
+                                />
+                            );
                         })}
                 </section>
             </BoxMovies>
