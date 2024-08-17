@@ -4,7 +4,7 @@ import Axios from 'axios';
 import Loader from '../../loader/Loader';
 import LogoSvg from '/public/logo.svg';
 
-const MovieDetails = ({ selectedId, onCloseMovieDetails, baseUrl, apiKey }) => {
+const MovieDetails = ({ selectedId, onCloseMovieDetails, baseUrl, apiKey, isOpen, handleOpen }) => {
     const [movieDetails, setMovieDetails] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
@@ -50,6 +50,14 @@ const MovieDetails = ({ selectedId, onCloseMovieDetails, baseUrl, apiKey }) => {
                     onClick={onCloseMovieDetails}
                 >
                     x
+                </Button>
+                <Button
+                    className={`w-[2em] h-[2em] z-20 ${
+                        isOpen ? 'bg-[#24323f] absolute right-2 top-[24.5px]' : 'bg-sidebar'
+                    } text-lg font-bold bg-navbar rounded-full text-primary absolute right-2 top-[12.5px]`}
+                    onClick={handleOpen}
+                >
+                    {isOpen ? '-' : '+'}
                 </Button>
                 {isLoading ? (
                     <>
