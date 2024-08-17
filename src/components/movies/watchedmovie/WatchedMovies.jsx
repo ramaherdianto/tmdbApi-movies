@@ -2,15 +2,27 @@ import React from 'react';
 import Summary from './Summary';
 import WatchedItem from './WatchedItem';
 import BoxMovies from '../BoxMovies';
+import MovieDetails from '../movielist/MovieDetails';
 
-const WatchedMovies = () => {
+const WatchedMovies = ({ selectedId, onCloseMovieDetails, baseUrl, apiKey }) => {
     return (
         <>
-            <BoxMovies boxTitle={'Movies You Watched'}>
-                <Summary />
-                <section className='mt-5 py-2'>
-                    <WatchedItem />
-                </section>
+            <BoxMovies boxTitle={selectedId ? 'Movie Details' : 'Movies You Watched'}>
+                {selectedId ? (
+                    <MovieDetails
+                        selectedId={selectedId}
+                        onCloseMovieDetails={onCloseMovieDetails}
+                        baseUrl={baseUrl}
+                        apiKey={apiKey}
+                    />
+                ) : (
+                    <>
+                        <Summary />
+                        <section className='mt-5 py-2'>
+                            <WatchedItem selectedId={selectedId} />
+                        </section>
+                    </>
+                )}
             </BoxMovies>
         </>
     );
