@@ -11,6 +11,7 @@ const MovieContent = ({
     onCloseMovieDetails,
     baseUrl,
     apiKey,
+    keyword,
 }) => {
     return (
         <>
@@ -19,6 +20,7 @@ const MovieContent = ({
                 isLoading={isLoading}
                 isError={isError}
                 onSelectedMovieId={onSelectedMovieId}
+                keyword={keyword}
             />
             <WatchedMovies
                 selectedId={selectedId}

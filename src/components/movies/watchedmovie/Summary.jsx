@@ -5,7 +5,7 @@ const Summary = ({ isOpen, handleOpen }) => {
     return (
         <>
             <section className='px-4 py-8 md:px-8 flex flex-col bg-navbar gap-4 sticky top-0 z-10 shadow-[0px_20px_33px_-8px_rgba(0,0,0,0.49)]'>
-                <h3 className='text-xl text-slate-200 font-semibold'>MOVIES YOU WATCHED</h3>
+                <h3 className='text-xl text-slate-200 font-semibold'>Movies You Watched</h3>
                 <div className='flex gap-6'>
                     <p>
                         <span>#️⃣ </span>
