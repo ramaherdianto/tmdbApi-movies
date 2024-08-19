@@ -1,6 +1,6 @@
 import Axios from 'axios';
 import MovieContent from './components/movies/MovieContent';
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/navbar/Navbar';
 import { useEffect, useState } from 'react';
 
 function App() {
