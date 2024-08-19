@@ -77,6 +77,7 @@ function App() {
                     keyword={keyword}
                     setKeyword={setKeyword}
                     onSubmitSearch={handleSearchMovies}
+                    movies={movies}
                 />
             </header>
             <main className='max-w-7xl w-full mx-auto mt-32 md:mt-20 flex flex-col md:flex-row gap-40'>

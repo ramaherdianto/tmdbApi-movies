@@ -3,7 +3,7 @@ import Logo from './Logo';
 import Search from './Search';
 import NumResults from './NumResults';
 
-const Navbar = ({ keyword, setKeyword, onSubmitSearch }) => {
+const Navbar = ({ keyword, setKeyword, onSubmitSearch, movies }) => {
     return (
         <>
             <nav className='flex flex-col max-w-7xl md:flex-row justify-center mx-auto shadow-[0px_20px_33px_-8px_rgba(0,0,0,0.49)] rounded-xl'>
@@ -17,7 +17,7 @@ const Navbar = ({ keyword, setKeyword, onSubmitSearch }) => {
                             setKeyword={setKeyword}
                             onSubmitSearch={onSubmitSearch}
                         />
-                        <NumResults />
+                        <NumResults movies={movies} />
                     </section>
                     <Search
                         className={'flex md:hidden w-full'}
