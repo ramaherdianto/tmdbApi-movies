@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../button/Button';
 
-const Search = () => {
+const Search = ({ className, widthInput, keyword, setKeyword, onSubmitSearch }) => {
     return (
         <>
-            <form className={`hidden gap-6 md:flex`} action=''>
+            <form className={`gap-6 ${className}`} onSubmit={onSubmitSearch} action=''>
                 <input
                     placeholder='Search...'
-                    className='w-96 rounded-lg bg-body border-sidebar text-slate-400 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent'
+                    className={`${widthInput} rounded-lg bg-body border-sidebar text-slate-400 p-4 pe-12 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent`}
                     type='text'
+                    onChange={(e) => setKeyword(e.target.value)}
+                    value={keyword}
                 />
                 <Button
                     className={

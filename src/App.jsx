@@ -8,6 +8,7 @@ function App() {
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState('');
     const [selectedMovieId, setSelectedMovieId] = useState(null);
+    const [keyword, setKeyword] = useState('');
 
     const baseUrl = import.meta.env.VITE_BASE_URL;
     const apiKey = import.meta.env.VITE_API_KEY;
@@ -37,6 +38,34 @@ function App() {
         }
     };
 
+    const handleSearchMovies = async (e) => {
+        e.preventDefault();
+        try {
+            setIsLoading(true);
+            setIsError('');
+            const response = await Axios.get(
+                keyword
+                    ? `${baseUrl}/search/movie?api_key=${apiKey}&query=${keyword}&page=1`
+                    : `${baseUrl}/movie/popular?api_key=${apiKey}&page=1`
+            );
+
+            const data = response.data.results;
+
+            if (data.length === 0) return setIsError('Movies not found!');
+
+            setMovies(data);
+            setIsError('');
+        } catch (error) {
+            setIsError(error.data.results.status_message);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        handleSearchMovies();
+    }, [keyword]);
+
     useEffect(() => {
         handleGetMovies();
     }, []);
@@ -44,7 +73,11 @@ function App() {
     return (
         <>
             <header className='sticky top-4 z-50'>
-                <Navbar />
+                <Navbar
+                    keyword={keyword}
+                    setKeyword={setKeyword}
+                    onSubmitSearch={handleSearchMovies}
+                />
             </header>
             <main className='max-w-7xl w-full mx-auto mt-32 md:mt-20 flex flex-col md:flex-row gap-40'>
                 <MovieContent
@@ -56,6 +89,7 @@ function App() {
                     onSelectedMovieId={handleSelectedMovieId}
                     selectedId={selectedMovieId}
                     onCloseMovieDetails={handleCloseMovieDetials}
+                    keyword={keyword}
                 />
             </main>
         </>

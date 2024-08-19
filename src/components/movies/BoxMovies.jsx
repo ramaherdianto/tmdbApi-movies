@@ -18,9 +18,7 @@ const BoxMovies = ({ children, boxTitle, isOpen, handleOpen }) => {
             >
                 {isOpen ? '-' : '+'}
             </Button>
-            {!isOpen && (
-                <h3 className='text-xl text-slate-200 font-semibold uppercase'>{boxTitle}</h3>
-            )}
+            {!isOpen && <h3 className='text-xl text-slate-200 font-semibold'>{boxTitle}</h3>}
             {isOpen && <>{children}</>}
         </section>
     );
