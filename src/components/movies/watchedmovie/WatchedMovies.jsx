@@ -4,7 +4,15 @@ import WatchedItem from './WatchedItem';
 import BoxMovies from '../BoxMovies';
 import MovieDetails from '../movielist/MovieDetails';
 
-const WatchedMovies = ({ selectedId, onCloseMovieDetails, baseUrl, apiKey }) => {
+const WatchedMovies = ({
+    selectedId,
+    onCloseMovieDetails,
+    baseUrl,
+    apiKey,
+    watched,
+    onAddWatchedMovies,
+    onDeleteWatchedMovie,
+}) => {
     const [isOpen, setIsOpen] = useState(true);
 
     const handleOpen = () => {
@@ -26,12 +34,23 @@ const WatchedMovies = ({ selectedId, onCloseMovieDetails, baseUrl, apiKey }) => 
                         apiKey={apiKey}
                         isOpen={isOpen}
                         handleOpen={handleOpen}
+                        watched={watched}
+                        onAddWatchedMovies={onAddWatchedMovies}
                     />
                 ) : (
                     <>
                         <Summary isOpen={isOpen} handleOpen={handleOpen} />
                         <section className='mt-5 py-2'>
-                            <WatchedItem selectedId={selectedId} />
+                            {watched?.map((movie) => {
+                                return (
+                                    <WatchedItem
+                                        key={movie.id}
+                                        selectedId={selectedId}
+                                        movie={movie}
+                                        onDeleteWatchedMovie={onDeleteWatchedMovie}
+                                    />
+                                );
+                            })}
                         </section>
                     </>
                 )}
