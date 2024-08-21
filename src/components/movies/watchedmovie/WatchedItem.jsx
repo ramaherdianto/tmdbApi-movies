@@ -18,7 +18,7 @@ const WatchedItem = ({ movie, onDeleteWatchedMovie }) => {
                         <div className='w-full flex items-center gap-6'>
                             <div>
                                 <span>🌟</span>
-                                <span className='text-slate-400 text-sm'>{movie.runtime}</span>
+                                <span className='text-slate-400 text-sm'>{movie.userRating}</span>
                             </div>
                             <div>
                                 <span>⏳</span>
