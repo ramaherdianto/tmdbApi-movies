@@ -3,6 +3,7 @@ import Button from '../../button/Button';
 import Axios from 'axios';
 import Loader from '../../loader/Loader';
 import LogoSvg from '/public/logo.svg';
+import StarRating from '../../rating/StarRating';
 
 const MovieDetails = ({
     selectedId,
@@ -16,6 +17,7 @@ const MovieDetails = ({
 }) => {
     const [movieDetails, setMovieDetails] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [userRating, setUserRating] = useState(null);
 
     const posterUrl = import.meta.env.VITE_MOVIE_POSTER;
 
@@ -52,7 +54,7 @@ const MovieDetails = ({
             poster_path,
             release_date,
             runtime,
-            rating,
+            userRating: Number(userRating),
         };
 
         onAddWatchedMovies(newWatchedMovies);
@@ -174,15 +176,20 @@ const MovieDetails = ({
                                         </div>
                                     </div>
                                 </div>
-                                <div className='py-4 bg-body rounded-lg flex items-center justify-center mt-4'>
-                                    <Button
-                                        className={
-                                            'bg-navbar py-4 px-8 rounded-2xl text-white flex gap-2'
-                                        }
-                                        onClick={handleWatchedMovies}
-                                    >
-                                        <span>➕</span> Add to Watched Movies
-                                    </Button>
+                                <div className='p-4 bg-body rounded-lg flex flex-col items-center justify-center mt-4 gap-6'>
+                                    <StarRating max={10} size={24} onUserRating={setUserRating} />
+                                    {userRating && (
+                                        <>
+                                            <Button
+                                                className={
+                                                    'bg-navbar p-[1rem] w-full rounded-2xl text-white flex justify-center items-center gap-2'
+                                                }
+                                                onClick={handleWatchedMovies}
+                                            >
+                                                <span>➕</span> Add to Watched Movies
+                                            </Button>
+                                        </>
+                                    )}
                                 </div>
                             </section>
                         </section>
