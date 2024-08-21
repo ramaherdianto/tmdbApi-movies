@@ -82,30 +82,26 @@ function App() {
 
     return (
         <>
-            <header className='sticky top-4 z-50'>
-                <Navbar
-                    keyword={keyword}
-                    setKeyword={setKeyword}
-                    onSubmitSearch={handleSearchMovies}
-                    movies={movies}
-                />
-            </header>
-            <main className='max-w-7xl w-full mx-auto mt-32 md:mt-20 flex flex-col md:flex-row gap-40'>
-                <MovieContent
-                    movies={movies}
-                    isLoading={isLoading}
-                    isError={isError}
-                    baseUrl={baseUrl}
-                    apiKey={apiKey}
-                    onSelectedMovieId={handleSelectedMovieId}
-                    selectedId={selectedMovieId}
-                    onCloseMovieDetails={handleCloseMovieDetials}
-                    keyword={keyword}
-                    onAddWatchedMovies={handleAddWatchedMovies}
-                    watched={watched}
-                    onDeleteWatchedMovie={handleDeleteWatchedMovie}
-                />
-            </main>
+            <Navbar
+                keyword={keyword}
+                setKeyword={setKeyword}
+                onSubmitSearch={handleSearchMovies}
+                movies={movies}
+            />
+            <MovieContent
+                movies={movies}
+                isLoading={isLoading}
+                isError={isError}
+                baseUrl={baseUrl}
+                apiKey={apiKey}
+                onSelectedMovieId={handleSelectedMovieId}
+                selectedId={selectedMovieId}
+                onCloseMovieDetails={handleCloseMovieDetials}
+                keyword={keyword}
+                onAddWatchedMovies={handleAddWatchedMovies}
+                watched={watched}
+                onDeleteWatchedMovie={handleDeleteWatchedMovie}
+            />
         </>
     );
 }
