@@ -4,7 +4,16 @@ import Axios from 'axios';
 import Loader from '../../loader/Loader';
 import LogoSvg from '/public/logo.svg';
 
-const MovieDetails = ({ selectedId, onCloseMovieDetails, baseUrl, apiKey, isOpen, handleOpen }) => {
+const MovieDetails = ({
+    selectedId,
+    onCloseMovieDetails,
+    baseUrl,
+    apiKey,
+    isOpen,
+    handleOpen,
+    watched,
+    onAddWatchedMovies,
+}) => {
     const [movieDetails, setMovieDetails] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
@@ -35,6 +44,20 @@ const MovieDetails = ({ selectedId, onCloseMovieDetails, baseUrl, apiKey, isOpen
             return `${genre.name}`;
         })
         .join(', ');
+
+    const handleWatchedMovies = () => {
+        const newWatchedMovies = {
+            id: selectedId,
+            title,
+            poster_path,
+            release_date,
+            runtime,
+            rating,
+        };
+
+        onAddWatchedMovies(newWatchedMovies);
+        onCloseMovieDetails();
+    };
 
     useEffect(() => {
         handleMovieDetails();
@@ -150,6 +173,16 @@ const MovieDetails = ({ selectedId, onCloseMovieDetails, baseUrl, apiKey, isOpen
                                             })}
                                         </div>
                                     </div>
+                                </div>
+                                <div className='py-4 bg-body rounded-lg flex items-center justify-center mt-4'>
+                                    <Button
+                                        className={
+                                            'bg-navbar py-4 px-8 rounded-2xl text-white flex gap-2'
+                                        }
+                                        onClick={handleWatchedMovies}
+                                    >
+                                        <span>➕</span> Add to Watched Movies
+                                    </Button>
                                 </div>
                             </section>
                         </section>

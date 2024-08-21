@@ -1,61 +1,40 @@
 import React from 'react';
+import Button from '../../button/Button';
 
-const WatchedItem = () => {
+const WatchedItem = ({ movie, onDeleteWatchedMovie }) => {
+    const posterUrl = import.meta.env.VITE_MOVIE_POSTER;
+
     return (
         <>
-            <article className='flex items-center gap-8 p-4 md:p-8 border-b border-slate-600'>
+            <article className='w-full flex items-center gap-8 p-4 md:p-8 border-b border-slate-600'>
                 <img
                     className='w-[70px] h-[100px]'
-                    src='https://img.freepik.com/free-vector/branding-identity-corporate-logo-vector-design-template_460848-13935.jpg?t=st=1723618426~exp=1723622026~hmac=d07cbf64384456c15f47b68fa56d1e8a053f0899187535ed5c9a56b6b7cbd5be&w=900'
+                    src={`${posterUrl}/${movie.poster_path}`}
                     alt=''
                 />
-                <div className='flex flex-col justify-start items-start gap-4'>
-                    <h3 className='text-xl text-slate-200 font-semibold'>Movie Title</h3>
-                    <div className='flex items-center gap-2'>
-                        <span>📅</span>
-                        <span className='text-slate-400 text-sm'>Year Released</span>
-                    </div>
-                </div>
-            </article>
-            <article className='flex items-center gap-8 p-4 md:p-8 border-b border-slate-600'>
-                <img
-                    className='w-[70px] h-[100px]'
-                    src='https://img.freepik.com/free-vector/branding-identity-corporate-logo-vector-design-template_460848-13935.jpg?t=st=1723618426~exp=1723622026~hmac=d07cbf64384456c15f47b68fa56d1e8a053f0899187535ed5c9a56b6b7cbd5be&w=900'
-                    alt=''
-                />
-                <div className='flex flex-col justify-start items-start gap-4'>
-                    <h3 className='text-xl text-slate-200 font-semibold'>Movie Title</h3>
-                    <div className='flex items-center gap-2'>
-                        <span>📅</span>
-                        <span className='text-slate-400 text-sm'>Year Released</span>
-                    </div>
-                </div>
-            </article>
-            <article className='flex items-center gap-8 p-4 md:p-8 border-b border-slate-600'>
-                <img
-                    className='w-[70px] h-[100px]'
-                    src='https://img.freepik.com/free-vector/branding-identity-corporate-logo-vector-design-template_460848-13935.jpg?t=st=1723618426~exp=1723622026~hmac=d07cbf64384456c15f47b68fa56d1e8a053f0899187535ed5c9a56b6b7cbd5be&w=900'
-                    alt=''
-                />
-                <div className='flex flex-col justify-start items-start gap-4'>
-                    <h3 className='text-xl text-slate-200 font-semibold'>Movie Title</h3>
-                    <div className='flex items-center gap-2'>
-                        <span>📅</span>
-                        <span className='text-slate-400 text-sm'>Year Released</span>
-                    </div>
-                </div>
-            </article>
-            <article className='flex items-center gap-8 p-4 md:p-8 border-b border-slate-600'>
-                <img
-                    className='w-[70px] h-[100px]'
-                    src='https://img.freepik.com/free-vector/branding-identity-corporate-logo-vector-design-template_460848-13935.jpg?t=st=1723618426~exp=1723622026~hmac=d07cbf64384456c15f47b68fa56d1e8a053f0899187535ed5c9a56b6b7cbd5be&w=900'
-                    alt=''
-                />
-                <div className='flex flex-col justify-start items-start gap-4'>
-                    <h3 className='text-xl text-slate-200 font-semibold'>Movie Title</h3>
-                    <div className='flex items-center gap-2'>
-                        <span>📅</span>
-                        <span className='text-slate-400 text-sm'>Year Released</span>
+                <div className='w-full flex flex-col justify-start items-start gap-4'>
+                    <h3 className='text-xl text-slate-200 font-semibold'>{movie.title}</h3>
+                    <div className='w-full flex items-center'>
+                        <div className='w-full flex items-center gap-6'>
+                            <div>
+                                <span>🌟</span>
+                                <span className='text-slate-400 text-sm'>{movie.runtime}</span>
+                            </div>
+                            <div>
+                                <span>⏳</span>
+                                <span className='text-slate-400 text-sm'>{movie.runtime} min</span>
+                            </div>
+                        </div>
+                        <div>
+                            <Button
+                                className={
+                                    'w-5 h-5 rounded-[50%] bg-red-500 flex items-center justify-center text-navbar font-semibold'
+                                }
+                                onClick={() => onDeleteWatchedMovie(movie.id)}
+                            >
+                                x
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </article>

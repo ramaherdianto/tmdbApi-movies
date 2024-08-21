@@ -6,7 +6,7 @@ import Error from '../../error/ErrorMessage';
 import Button from '../../button/Button';
 import ErrorMessage from '../../error/ErrorMessage';
 
-const MovieList = ({ movies, isLoading, isError, onSelectedMovieId, keyword }) => {
+const MovieList = ({ movies, isLoading, isError, onSelectedMovieId }) => {
     const [isOpen, setIsOpen] = useState(true);
 
     const handleOpen = () => {

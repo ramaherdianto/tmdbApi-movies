@@ -12,6 +12,9 @@ const MovieContent = ({
     baseUrl,
     apiKey,
     keyword,
+    onAddWatchedMovies,
+    watched,
+    onDeleteWatchedMovie,
 }) => {
     return (
         <>
@@ -27,6 +30,9 @@ const MovieContent = ({
                 onCloseMovieDetails={onCloseMovieDetails}
                 baseUrl={baseUrl}
                 apiKey={apiKey}
+                watched={watched}
+                onAddWatchedMovies={onAddWatchedMovies}
+                onDeleteWatchedMovie={onDeleteWatchedMovie}
             />
         </>
     );

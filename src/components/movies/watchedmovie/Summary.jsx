@@ -8,12 +8,8 @@ const Summary = ({ isOpen, handleOpen }) => {
                 <h3 className='text-xl text-slate-200 font-semibold'>Movies You Watched</h3>
                 <div className='flex gap-6'>
                     <p>
-                        <span>#️⃣ </span>
-                        <span className='text-slate-200 text-sm'>0 Movies</span>
-                    </p>
-                    <p>
                         <span>🎬 </span>
-                        <span className='text-slate-200 text-sm'>0.0</span>
+                        <span className='text-slate-200 text-sm'>0 Movies</span>
                     </p>
                     <p>
                         <span>🌟 </span>

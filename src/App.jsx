@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 
 function App() {
     const [movies, setMovies] = useState([]);
+    const [watched, setWatched] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [isError, setIsError] = useState('');
     const [selectedMovieId, setSelectedMovieId] = useState(null);
@@ -19,6 +20,15 @@ function App() {
 
     const handleCloseMovieDetials = () => {
         setSelectedMovieId(null);
+    };
+
+    const handleAddWatchedMovies = (movie) => {
+        setWatched((watched) => [...watched, movie]);
+    };
+
+    const handleDeleteWatchedMovie = (id) => {
+        confirm('Are you sure wanna delete this?');
+        setWatched((watched) => watched.filter((movie) => movie.id !== id));
     };
 
     const handleGetMovies = async () => {
@@ -91,6 +101,9 @@ function App() {
                     selectedId={selectedMovieId}
                     onCloseMovieDetails={handleCloseMovieDetials}
                     keyword={keyword}
+                    onAddWatchedMovies={handleAddWatchedMovies}
+                    watched={watched}
+                    onDeleteWatchedMovie={handleDeleteWatchedMovie}
                 />
             </main>
         </>
