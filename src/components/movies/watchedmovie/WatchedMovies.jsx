@@ -39,7 +39,7 @@ const WatchedMovies = ({
                     />
                 ) : (
                     <>
-                        <Summary isOpen={isOpen} handleOpen={handleOpen} />
+                        <Summary isOpen={isOpen} handleOpen={handleOpen} watched={watched} />
                         <section className='mt-5 py-2'>
                             {watched?.map((movie) => {
                                 return (

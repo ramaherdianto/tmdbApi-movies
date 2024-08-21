@@ -28,6 +28,9 @@ const MovieDetails = ({
         setIsLoading(false);
     };
 
+    const isWatched = watched.some((movie) => movie.id === selectedId);
+    const watchedMovieRating = watched.find((movie) => movie.id === selectedId)?.userRating;
+
     const {
         id,
         title,
@@ -35,7 +38,6 @@ const MovieDetails = ({
         poster_path,
         release_date,
         runtime,
-        rating,
         overview,
         genres,
         production_companies,
@@ -122,22 +124,24 @@ const MovieDetails = ({
                                         <h3 className='text-base sm:text-xl text-slate-200 font-semibold'>
                                             {title}
                                         </h3>
-                                        <p className='flex gap-2'>
+                                        <p className='flex items-center gap-2'>
                                             <span>📅</span>
                                             <span className='text-slate-400 text-xs sm:text-sm'>
                                                 {release_date}
                                             </span>
                                         </p>
-                                        <p className='flex gap-2'>
+                                        <p className='flex items-center gap-2'>
                                             <span>⏱️</span>
                                             <span className='text-slate-400 text-xs sm:text-sm'>
                                                 {runtime}
                                             </span>
                                         </p>
-                                        <p className='flex gap-2'>
+                                        <p className='flex items-center gap-2'>
                                             <span>🌟</span>
                                             <span className='text-slate-400 text-xs sm:text-sm'>
-                                                {rating ? rating : '-'}
+                                                {watched.map((item) => {
+                                                    return <>{id === item.id && item.userRating}</>;
+                                                })}
                                             </span>
                                         </p>
                                     </div>
@@ -177,18 +181,31 @@ const MovieDetails = ({
                                     </div>
                                 </div>
                                 <div className='p-4 bg-body rounded-lg flex flex-col items-center justify-center mt-4 gap-6'>
-                                    <StarRating max={10} size={24} onUserRating={setUserRating} />
-                                    {userRating && (
+                                    {!isWatched ? (
                                         <>
-                                            <Button
-                                                className={
-                                                    'bg-navbar p-[1rem] w-full rounded-2xl text-white flex justify-center items-center gap-2'
-                                                }
-                                                onClick={handleWatchedMovies}
-                                            >
-                                                <span>➕</span> Add to Watched Movies
-                                            </Button>
+                                            <StarRating
+                                                max={10}
+                                                size={24}
+                                                onUserRating={setUserRating}
+                                            />
+                                            {userRating && (
+                                                <>
+                                                    <Button
+                                                        className={
+                                                            'bg-navbar p-[1rem] w-full rounded-2xl text-white flex justify-center items-center gap-2'
+                                                        }
+                                                        onClick={handleWatchedMovies}
+                                                    >
+                                                        <span>➕</span> Add to Watched Movies
+                                                    </Button>
+                                                </>
+                                            )}
                                         </>
+                                    ) : (
+                                        <span className='text-center text-white text-sm'>
+                                            ⛔ You have watched this movie already and rating is{' '}
+                                            {watchedMovieRating} / 10
+                                        </span>
                                     )}
                                 </div>
                             </section>
